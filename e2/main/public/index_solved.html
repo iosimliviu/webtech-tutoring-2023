@@ -20,12 +20,12 @@
             fetch("http://localhost:8080/cars").then(res => { return res.json() })
                 .then(data => {
 
-                    var obj = data;
-                    for (let i of obj) {
-                        if (i.color === 'red') {
+                    let cars = data;
+                    for (let car of cars) {
+                        if (car.color === 'red') {
                             const carName = document.createElement("p");
                            
-                            carName.appendChild(document.createTextNode(i.name));
+                            carName.appendChild(document.createTextNode(car.name));
                             carsList.appendChild(carName);
                         }
                     }

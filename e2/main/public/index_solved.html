@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>List of cars</title>
+</head>
+
+<body>
+    List of cars
+    <div id="list">
+    </div>
+
+    <button id="getData">Get data</button>
+
+    <script type="text/javascript">
+        const carsList = document.getElementById("list");
+        
+        function getData() {
+
+            fetch("http://localhost:8080/cars").then(res => { return res.json() })
+                .then(data => {
+
+                    var obj = data;
+                    for (let i of obj) {
+                        if (i.color === 'red') {
+                            const carName = document.createElement("p");
+                           
+                            carName.appendChild(document.createTextNode(i.name));
+                            carsList.appendChild(carName);
+                        }
+                    }
+
+                })
+        }
+
+        const btn = document.getElementById("getData");
+        btn.addEventListener("click", e => {
+            getData();
+        });
+    </script>
+</body>
+
+</html>
+
